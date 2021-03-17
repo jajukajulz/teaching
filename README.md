@@ -14,6 +14,8 @@ git clone https://github.com/jajukajulz/day1.git
 
 Open up index.html in your web browser
 
+![Screenshot of landing page](https://github.com/jajukajulz/day1/blob/master/images/landing_page.png?raw=true)
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
