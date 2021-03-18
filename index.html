@@ -31,6 +31,24 @@
     <h2>JavaScript Confirm Box</h2>
     <button onclick="myFunction()">Try it</button>
     <p id="demo">This text will change after button click</p>
+
+    <h2>HTML Forms</h2>
+
+    <form name="form1" method="post" onsubmit="return processFormSubmission();">
+      <label for="fname">First name:</label><br />
+      <input type="text" id="fname" name="fname" value="John" /><br />
+      <label for="lname">Last name:</label><br />
+      <input type="text" id="lname" name="lname" value="Doe" /><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <br />
+
+    First Name:
+    <p id="form_fname">-</p>
+    Last Name:
+    <p id="form_lname">-</p>
+
     <script src="scripts/main.js"></script>
   </body>
 </html>
