@@ -34,13 +34,27 @@
 
     <h2>HTML Forms</h2>
 
-    <form name="form1" method="post" onsubmit="return processFormSubmission();">
+    <!-- 
+      onsubmit is executed first in order to check the format etc. Then action is executed to get/post the data to the backend.
+      if onsubmit function returns false, action is not executed.
+    -->
+    <form
+      name="form1"
+      method="post"
+      onsubmit="return processFormSubmission();"
+      action="/"
+    >
       <label for="fname">First name:</label><br />
       <input type="text" id="fname" name="fname" value="John" /><br />
       <label for="lname">Last name:</label><br />
       <input type="text" id="lname" name="lname" value="Doe" /><br /><br />
       <input type="submit" value="Submit" />
     </form>
+
+    <br />
+
+    <h2><%= status %></h1>
+
 
     <br />
 
