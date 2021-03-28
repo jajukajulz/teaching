@@ -15,6 +15,6 @@ function processFormSubmission() {
   document.getElementById("form_fname").innerHTML = first_name;
   document.getElementById("form_lname").innerHTML = last_name;
 
-  // do not submit the form
-  return false;
+  return true; //submit form i.e. process action
+  // return false;   // do not submit the form
 }
