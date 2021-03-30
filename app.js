@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: false })); // use the middleware “expre
 
 // Connection to the SQlite database
 const db_name = path.join(__dirname, "data", "apptest.db");
+console.log("Database full path - " + db_name);
 const db = new sqlite3.Database(db_name, (err) => {
   if (err) {
     return console.error(err.message);
@@ -50,13 +51,25 @@ db.run(sql_create, (err) => {
 
 // GET /
 router.get("/", function (req, res) {
-  res.render(__dirname + "/views/index.ejs", { status: "No status" }); //__dirname resolves to your project folder.
+  const sql = "SELECT * FROM User";
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      return console.error(err.message);
+    }
 
-  //The sendfile method, on the other hand, simply sends a given file to the client, regardless of the type and contents of the file.
-  //render allows processing of variables but requires use of a templating engine e.g. name
-  //  res.sendFile(
-  //    path.join(__dirname + "/views/index.html")
-  //  );
+    console.log("rows - " + rows.length);
+    //__dirname resolves to your project folder.
+    res.render(__dirname + "/views/index.ejs", {
+      status: "No status",
+      users: rows,
+    });
+
+    //The sendfile method, on the other hand, simply sends a given file to the client, regardless of the type and contents of the file.
+    //render allows processing of variables but requires use of a templating engine e.g. name
+    //  res.sendFile(
+    //    path.join(__dirname + "/views/index.html")
+    //  );
+  });
 });
 
 // GET /about
