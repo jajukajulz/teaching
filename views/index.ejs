@@ -53,8 +53,34 @@
 
     <br />
 
+    <hr>
+  
+
     <h2><%= status %></h1>
 
+    <ul>
+      <li>Item one</li>
+      <li>Item two</li>
+    </ul>  
+
+    <br />
+
+    <ol>
+      <li>Item one</li>
+      <li>Item two</li>
+    </ol>  
+
+      <ul>
+        <% if ( typeof(users) =="undefined") { %>
+          <li>No data</li> 
+        <% } else { %> 
+          <% for (let i = 0; i < users.length; i++) { %>
+            <li><%= users[i] %> - <%= users[i].Name %> - <%= users[i].Surname %></li>
+          <% } %>
+         <% } %>
+      
+      </ul>
+      
 
     <br />
 
