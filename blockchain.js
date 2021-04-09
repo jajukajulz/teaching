@@ -1,3 +1,4 @@
+//usage - node encrypt.js
 var crypto = require("crypto");
 
 //HASHING
