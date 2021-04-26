@@ -32,6 +32,10 @@
     <button onclick="myFunction()">Try it</button>
     <p id="demo">This text will change after button click</p>
 
+    <h2>Blockchain Setup</h2>
+    <button class="enableEthereumButton">Enable Ethereum</button> 
+    <h2>Account: <span class="showAccount"></span></h2>
+
     <h2>HTML Forms</h2>
 
     <!-- 
@@ -48,7 +52,7 @@
       <input type="text" id="fname" name="fname" value="John" /><br />
       <label for="lname">Last name:</label><br />
       <input type="text" id="lname" name="lname" value="Doe" /><br /><br />
-      <input type="submit" value="Submit" />
+      <input type="submit" id="form1SubmitBtn" value="Submit" />
     </form>
 
     <br />
@@ -76,6 +80,10 @@
         <% } else { %> 
           <% for (let i = 0; i < users.length; i++) { %>
             <li><%= users[i] %> - <%= users[i].Name %> - <%= users[i].Surname %></li>
+            <a  href="javascript:void(0);" class="btn btn-xs btn-success blockchain addUserToBlockchainBtn"
+                      data-fname="<%= users[i].Name%>"
+                      data-lname="<%=users[i].Surname%>">
+                      Add to Blockchain</a> 
           <% } %>
          <% } %>
       
@@ -89,6 +97,11 @@
     Last Name:
     <p id="form_lname">-</p>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- jQuery from Google Content Delivery Network (CDN)-->
+    <!-- This exposes the library as a global variable: ethers -->
+    <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
+charset="utf-8" type="text/javascript"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/day1_blockchain.js"></script> <!-- Blockchain integration-->
   </body>
 </html>
