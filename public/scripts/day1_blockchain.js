@@ -21,13 +21,19 @@ const initialize = () => {
 
   const isMetaMaskConnected = () => accounts && accounts.length > 0;
 
-  // verify if the browser is running MetaMask and ask user permission to access his accounts
+  /* Link our Enable Ethereum Button from the index.ejs file to a function that verifies if the browser is running MetaMask 
+  and asks user permission to access their accounts. You should only initiate a connection request in response to direct user action,
+  such as clicking a button instead 
+  of initiating a connection request on page load.
+  */
   ethereumButton.addEventListener("click", () => {
     getAccount();
   });
 
   console.log("MetaMask is installed - " + isMetaMaskInstalled());
 
+  /* "Connecting" or "logging in" to MetaMask effectively means "to access the user's 
+  Ethereum account(s)". */
   async function getAccount() {
     // old school way of checking if metamask is installed
     if (typeof window.ethereum !== "undefined") {
@@ -368,4 +374,5 @@ const initialize = () => {
   //  });
 };
 
+// As soon as the content in the DOM is loaded we are calling our initialize function
 window.addEventListener("DOMContentLoaded", initialize);
