@@ -70,7 +70,7 @@ const initialize = () => {
    */
 
   // in order to create a contract instance, we need the contract address and its ABI
-  day1ContractAddress = "0x73dde6A61C038C8CC3aBb5952b4D55A7418e5054";
+  day1ContractAddress = "0xf2951571e96FC8D8FC57a70452f23d7CbAFf905b";
 
   // the Application Binary interface (ABI) of the contract code is just a list of method signatures,
   // return types, members etc of the contract in a defined JSON format.
