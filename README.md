@@ -6,7 +6,7 @@ logging an issue here on GitHub.
 ## Branches
 Getting started with Web and Blockchain track (HTML, CSS, JS, Encryption and Ethereum blockchain), see below:
 
-- [master branch](https://github.com/jajukajulz/teaching/tree/master) - Part 1: A basic unstyled html app
+- [master branch](https://github.com/jajukajulz/teaching/tree/master) - Part 1: A basic unstyled html website
 
 - [master-node branch](https://github.com/jajukajulz/teaching/tree/master_node) - Part 2: Conversion of vanilla `html` 
 website into a `Node.js` web app
