@@ -17,11 +17,6 @@ Install DB Browser for SQLite to graphically view db
 Visit https://sqlitebrowser.org/
 ``` 
 
-Run `encrypt.js` to view cryptography examples
-```
-node encrypt.js
-```
-
 Run application
 ```
 npm run start
