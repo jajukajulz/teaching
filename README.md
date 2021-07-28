@@ -1,59 +1,38 @@
-# Day 1 Coding Exercise
-
-This is an intro to HTML, CSS and JS
-
-## Installation
-
-Clone the project repository
-
-```
-git clone https://github.com/jajukajulz/day1.git
-```
-# Day 1 Coding Exercise
-
-This is an intro to HTML, CSS and JS
-
-## Installation
-
-Clone the project repository
-
-```
-git clone https://github.com/jajukajulz/day1.git
-```
+# Teaching Materials
+This is a repository for all my teaching material. Feel free to use it at will with attribution of source.
+If you find any errors, inconsistencies, typos, omissions, etc., please do not hesitate to let me know. Ideally by 
+logging an issue here on GitHub.
 
 ## Branches
+Refer to https://github.com/jajukajulz/teaching/blob/master/README.md for an updated list of branches.
 
-[Master branch](https://github.com/jajukajulz/day1/tree/master) - Part 1: Basic html app
+## Installation
+Clone the project repository
 
-[Master-node branch](https://github.com/jajukajulz/day1/tree/master_node) - Part 2: Conversion of vanilla `html` website into a `Node.js` app
-
-[Master-db branch](https://github.com/jajukajulz/day1/tree/master_db) - Part 3: Adding a `SQLite` database to the `Node.js` app
-
-[Master-crypto branch](https://github.com/jajukajulz/day1/tree/master_crypto) - Part 4: Integrating the NodeJS app with the `Ethereum` blockchain using `MetaMask` and `ethers`. Also includes example on basic cryptography (https://github.com/jajukajulz/day1/blob/master_crypto/encrypt.js) - hashing and asymmetric encryption
+```
+git clone https://github.com/jajukajulz/teaching.git
+```
 
 ## Contributing
-
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-## License
+## Attribution
+Inspiration from this repo/wiki - https://github.com/cogeorg/teaching
 
+## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
-
 ## Usage
+Open up `index.html` in your web browser or run `npm run start` depending on the branch.
 
-Open up index.html in your web browser
-
-![Screenshot of landing page](https://github.com/jajukajulz/day1/blob/master/images/landing_page.png?raw=true)
+![Screenshot of landing page](https://github.com/jajukajulz/teaching/blob/master/images/landing_page.png?raw=true)
 
 ## Contributing
-
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
 ## License
-
 [MIT](https://choosealicense.com/licenses/mit/)
