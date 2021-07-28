@@ -1,44 +1,39 @@
-# Day 1 Coding Exercise
-
-This is an intro to HTML, CSS and JS
-
-## Installation
-
-Clone the project repository
-
-```
-git clone https://github.com/jajukajulz/day1.git
-```
-# Day 1 Coding Exercise
-
-This is an intro to HTML, CSS and JS
-
-## Installation
-
-Clone the project repository
-
-```
-git clone https://github.com/jajukajulz/day1.git
-```
+# Teaching Materials
+This is a repository for all my teaching material. Feel free to use it at will with attribution of source.
+If you find any errors, inconsistencies, typos, omissions, etc., please do not hesitate to let me know. Ideally by 
+logging an issue here on GitHub.
 
 ## Branches
+Getting started with Web and Blockchain track (HTML, CSS, JS, Encryption and Ethereum blockchain), see below:
 
-[Master branch](https://github.com/jajukajulz/day1/tree/master) - Part 1: Basic html app
+- [master branch](https://github.com/jajukajulz/teaching/tree/master) - Part 1: A basic unstyled html app
 
-[Master-node branch](https://github.com/jajukajulz/day1/tree/master_node) - Part 2: Conversion of vanilla `html` website into a `Node.js` app
+- [master-node branch](https://github.com/jajukajulz/teaching/tree/master_node) - Part 2: Conversion of vanilla `html` 
+website into a `Node.js` web app
 
-[Master-db branch](https://github.com/jajukajulz/day1/tree/master_db) - Part 3: Adding a `SQLite` database to the `Node.js` app
+- [master-db branch](https://github.com/jajukajulz/teaching/tree/master_db) - Part 3: Adding a `SQLite` database to the 
+`Node.js` web app
 
-[Master-crypto branch](https://github.com/jajukajulz/day1/tree/master_crypto) - Part 4: Integrating the NodeJS app with the `Ethereum` blockchain using `MetaMask` and `ethers`. Also includes example on basic cryptography (https://github.com/jajukajulz/day1/blob/master_crypto/encrypt.js) - hashing and asymmetric encryption
+- [master-crypto branch](https://github.com/jajukajulz/teaching/tree/master_crypto) - Part 4: Basic cryptography 
+(hashing and asymmetric encryption) - see https://github.com/jajukajulz/teaching/blob/master_crypto/encrypt.js 
+
+- [master-ethereum branch](https://github.com/jajukajulz/teaching/tree/master_ethereum) - Part 5: Integrating the 
+`Node.js` web app with the `Ethereum` blockchain using `MetaMask` and `ethers` library
+
+
+## Installation
+Clone the project repository
+
+```
+git clone https://github.com/jajukajulz/teaching.git
+```
 
 ## Contributing
-
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
 ## License
-
 [MIT](https://choosealicense.com/licenses/mit/)
 
 
@@ -46,7 +41,7 @@ Please make sure to update tests as appropriate.
 
 Open up index.html in your web browser
 
-![Screenshot of landing page](https://github.com/jajukajulz/day1/blob/master/images/landing_page.png?raw=true)
+![Screenshot of landing page](https://github.com/jajukajulz/teaching/blob/master/images/landing_page.png?raw=true)
 
 ## Contributing
 
