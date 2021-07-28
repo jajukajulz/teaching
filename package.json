@@ -4,8 +4,9 @@
   "description": "This is an intro to HTML, CSS and JS",
   "main": "app.js",
   "scripts": {
+    "prestart": "node ./utils/setup.js",
     "start": "node app.js",
-    "encryptdemo": "node encrypt.js",
+    "encryptdemo": "node utils/encrypt.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
