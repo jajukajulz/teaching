@@ -30,6 +30,7 @@ coverage
 # nyc test coverage
 .nyc_output
 
+
 # Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
@@ -127,5 +128,8 @@ dist/
 # Temporary folders
 tmp/
 temp/
+
+# test database
+apptest.db
 
 # End of https://www.toptal.com/developers/gitignore/api/node
