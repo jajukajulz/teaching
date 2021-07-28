@@ -8,10 +8,30 @@ Refer to https://github.com/jajukajulz/teaching/blob/master/README.md for an upd
 
 ## Installation
 Clone the project repository
-
 ```
 git clone https://github.com/jajukajulz/teaching.git
 ```
+
+Install DB Browser for SQLite to graphically view db
+```
+Visit https://sqlitebrowser.org/
+``` 
+
+Run `encrypt.js` to view cryptography examples
+```
+node encrypt.js
+```
+
+Run application
+```
+npm run start
+```
+
+Run `encrypt.js` to view cryptography examples
+```
+node encrypt.js
+```
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
