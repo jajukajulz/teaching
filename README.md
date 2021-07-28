@@ -1,27 +1,42 @@
-# Day 1 Coding Exercise
+# Teaching Materials
+This is a repository for all my teaching material. Feel free to use it at will with attribution of source.
+If you find any errors, inconsistencies, typos, omissions, etc., please do not hesitate to let me know. Ideally by 
+logging an issue here on GitHub.
 
-This is an intro to HTML, CSS and JS
+## Branches
+Refer to https://github.com/jajukajulz/teaching/blob/master/README.md for an updated list of branches.
 
 ## Installation
-
 Clone the project repository
-
 ```
-git clone https://github.com/jajukajulz/day1.git
+git clone https://github.com/jajukajulz/teaching.git
 ```
 
-## Usage
-
-Open up index.html in your web browser
-
-![Screenshot of landing page](https://github.com/jajukajulz/day1/blob/master/images/landing_page.png?raw=true)
+Run application
+```
+npm run start
+```
 
 ## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+Please make sure to update tests as appropriate.
+
+## Attribution
+Inspiration from this repo/wiki - https://github.com/cogeorg/teaching
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Usage
+Open up `index.html` in your web browser or run `npm run start` depending on the branch.
+
+![Screenshot of landing page](https://github.com/jajukajulz/teaching/blob/master/images/landing_page.png?raw=true)
+
+## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
 ## License
-
 [MIT](https://choosealicense.com/licenses/mit/)
