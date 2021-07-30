@@ -60,7 +60,7 @@ router.get("/", function (req, res) {
     console.log("rows - " + rows.length);
     //__dirname resolves to your project folder.
     res.render(__dirname + "/views/index.ejs", {
-      status: "No status",
+      status: req.query.success === "1" ? "Saved to DB" : "No status",
       users: rows,
     });
 
@@ -83,10 +83,11 @@ router.post("/", function (req, res) {
   console.log("Submitted name: " + req.body.fname);
   console.log("Submitted surname: " + req.body.lname);
   const sql = "INSERT INTO User (Name, Surname) VALUES (?,?)";
+
   db.run(sql, user, (err) => {
     // if (err) ...
-    res.render(__dirname + "/views/index.ejs", { status: "Saved to DB" });
-    //res.redirect("/");
+    // res.render(__dirname + "/views/index.ejs", { status: "Saved to DB" });
+    res.redirect("/?success=1");
   });
 });
 
