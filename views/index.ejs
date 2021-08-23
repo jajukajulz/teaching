@@ -91,6 +91,7 @@
                       <td><%= users[i].Name %></td>
                       <td><%= users[i].Surname %></td>
                       <td><a  href="javascript:void(0);" class="btn btn-xs btn-success blockchain addUserToBlockchainBtn"
+                              id="<%= ("add_blockchain_" + users[i].User_ID) %>"
                               data-fname="<%= users[i].Name%>"
                               data-lname="<%=users[i].Surname%>">
                           Add to Blockchain</a></td>
@@ -113,8 +114,8 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
-  charset="utf-8" type="text/javascript"></script> <!-- This exposes the library as a global variable: ethers -->
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+          type="application/javascript"></script> <!-- This exposes the library as a global variable: ethers -->
   <!--    <script src="scripts/main.js"></script> &lt;!&ndash; A basic JavaScript file that contains the logic for the popup on a button click &ndash;&gt; -->
   <script src="scripts/day1_blockchain.js"></script> <!-- Blockchain integration-->
 
