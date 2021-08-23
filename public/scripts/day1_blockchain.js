@@ -1,8 +1,4 @@
 // this script contains the integration logic for the day1 node.js application to interact with the day1 solidity smart contract
-const isMetaMaskInstalled = () => {
-  const { ethereum } = window;
-  return Boolean(ethereum && ethereum.isMetaMask);
-};
 
 //Basic Actions Section
 const ethereumButton = document.querySelector(".enableEthereumButton");
@@ -16,12 +12,24 @@ const initialize = () => {
     page (images or iframes), not just the DOM, is ready. */
   //$(document).ready(function () {
 
+  // Contract and Account Objects \\
   let accounts;
   let day1ContractABI;
   let day1ContractAddress;
   let day1Contract;
 
+  //------MetaMask Functions------\\
+
+  // function to check if MetaMask is connected
   const isMetaMaskConnected = () => accounts && accounts.length > 0;
+
+  // function to see if the MetaMask extension is installed
+  const isMetaMaskInstalled = () => {
+    //Have to check the ethereum binding on the window object to see if it's installed
+    const { ethereum } = window; // old school way was (typeof window.ethereum !== "undefined")
+    console.log({ ethereum });
+    return Boolean(ethereum && ethereum.isMetaMask);
+  };
 
   /* Link our Enable Ethereum Button from the index.ejs file to a function that verifies if the browser is running MetaMask 
   and asks user permission to access their accounts. You should only initiate a connection request in response to direct user action,
@@ -67,89 +75,120 @@ const initialize = () => {
     }
   }
 
+  //------/MetaMask Functions------\\
+
+  //------Contract Setup------\\
+
   /**
    * Contract Interactions
    */
 
   // in order to create a contract instance, we need the contract address and its ABI
-  day1ContractAddress = "0xf2951571e96FC8D8FC57a70452f23d7CbAFf905b";
+  // day1ContractAddress = "0xf2951571e96FC8D8FC57a70452f23d7CbAFf905b";
+  // day1ContractAddress = "0x73dde6A61C038C8CC3aBb5952b4D55A7418e5054";
+  day1ContractAddress = "0x2366009AFcfD5421990b033077d2cD45B98a3B77";
 
   // the Application Binary interface (ABI) of the contract code is just a list of method signatures,
   // return types, members etc of the contract in a defined JSON format.
   // This ABI is needed when you will call your contract from a real javascript client e.g. a node.js web application.
   day1ContractABI = [
     {
-      constant: true,
-      inputs: [
+      "anonymous": false,
+      "inputs": [
         {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
+          "indexed": false,
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
         },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "_surname",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_submissionBlockNumber",
+          "type": "uint256"
+        }
       ],
-      name: "day1_users",
-      outputs: [
-        {
-          internalType: "string",
-          name: "name",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "surname",
-          type: "string",
-        },
-        {
-          internalType: "address",
-          name: "added_by",
-          type: "address",
-        },
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function",
+      "name": "registeredDay1UserEvent",
+      "type": "event"
     },
     {
-      constant: false,
-      inputs: [
+      "constant": true,
+      "inputs": [
         {
-          internalType: "string",
-          name: "_name",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "_surname",
-          type: "string",
-        },
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
       ],
-      name: "registerUser",
-      outputs: [
+      "name": "day1_users",
+      "outputs": [
         {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
         },
+        {
+          "internalType": "string",
+          "name": "surname",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "added_by",
+          "type": "address"
+        }
       ],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function",
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-      constant: true,
-      inputs: [],
-      name: "getNumberOfUsers",
-      outputs: [
+      "constant": false,
+      "inputs": [
         {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
         },
+        {
+          "internalType": "string",
+          "name": "_surname",
+          "type": "string"
+        }
       ],
-      payable: false,
-      stateMutability: "view",
-      type: "function",
+      "name": "registerUser",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getNumberOfUsers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
   ];
 
   // alternative to manually adding the ABI is to get it directly from the JSON file. This is actually the better way :)
@@ -167,43 +206,41 @@ const initialize = () => {
         return console.log(message_description);
     } */
 
-  /* The JSON interface is a JSON object describing the Application Binary Interface (ABI) for an Ethereum smart contract.
-        Using this JSON interface, web3.js is able to create JavaScript object representing the smart contract and its methods and 
-        events using the web3.eth.Contract object. 
-        
-        Load the contract schema from the abi and instantiate the contract by address
-        - at(): Create an instance of the smart contract that represents your contract at a specific address.
-        - deployed(): Create an instance of the smart contract that represents the default address managed by day1Contract.
-        - new(): Deploy a new version of this contract to the network, getting an instance of the smart contract that represents the newly deployed instance.
+  // The "any" network will allow spontaneous network changes
+  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
-        */
+  provider.on("network", (newNetwork, oldNetwork) => {
+    // When a Provider makes its initial connection, it emits a "network"
+    // event with a null oldNetwork along with the newNetwork. So, if the
+    // oldNetwork exists, it represents a changing network
+    if (oldNetwork) {
+      window.location.reload();
+    }
+  });
 
-  // call addDay1UserToBlockchain() function on button click
+  console.log({ provider });
+
+  // The Metamask plugin also allows signing transactions to send ether and
+  // pay to change state within the blockchain. For this, we need the account signer
+  const signer = provider.getSigner();
+
+  // the contract object
+  day1Contract = new ethers.Contract(
+      day1ContractAddress,
+      day1ContractABI,
+      signer
+  );
+
+  //------/Contract Setup------\\
+
+  //------UI Click Event Handlers------\\
+
+  // trigger smart contract call to addDay1UserToBlockchain() function on UI button click
   $(".addUserToBlockchainBtn").click(addDay1UserToBlockchain);
 
-  // trigger smart contract call to getNumberOfUsersCount() function after clicking on User count button
-  /*     $("#getUserCountBtn").click(function (e) {
-        e.preventDefault();
-        getNumberOfUsersCount();
-        }); */
+  //------/UI Click Event Handlers------\\
 
-  // trigger smart contract call to destroyContract() function after clicking on Initiate Self Destruct button
-  /*    $("#destroyDay1ContractBtn").click(function (e) {
-        e.preventDefault();
-        destroyContract();
-        }); */
-
-  // trigger smart contract call to toggleContractStatus() function after clicking on toggle contract status button
-  /*     $("#toggleContractStatusBtn").click(function (e) {
-        e.preventDefault();
-        toggleContractStatus();
-        }); */
-
-  // trigger smart contract call to getContractStatus() function after clicking on check contract status button
-  /*   $("#getContractStatusBtn").click(function (e) {
-        e.preventDefault();
-        getContractStatus();
-        }); */
+  //------Custom Error Handlers------\\
 
   //function to handle error from smart contract call
   function handle_error(err) {
@@ -232,8 +269,18 @@ const initialize = () => {
     return console.log(message_description);
   }
 
+  //------/Custom Error Handlers------\\
+
+  //------Blockchain and Smart Contract Function Calls------\\
+
   // function Add to Blockchain
   async function addDay1UserToBlockchain() {
+
+    $(this).addClass('disabled');
+    // add spinner to button
+    $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> 
+        Adding to Blockchain...`);
+
     //day1 user form data
     var fname = $(this).data("fname");
     var lname = $(this).data("lname");
@@ -247,19 +294,10 @@ const initialize = () => {
     // Day1Registry smart contract
     // function registerUser(string calldata _name, string calldata _surname) external returns(uint)
 
-    await getAccount();
+    if (typeof web3 === 'undefined') {
+      return handle_web3_undefined_error();
+    }
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    console.log({ provider });
-
-    // The Metamask plugin also allows signing transactions to send ether and
-    // pay to change state within the blockchain. For this, we need the account signer
-    const signer = provider.getSigner();
-    const day1Contract = new ethers.Contract(
-      day1ContractAddress,
-      day1ContractABI,
-      signer
-    );
     try {
       const transaction = await day1Contract.registerUser(fname, lname);
       const data = await transaction.wait();
@@ -267,36 +305,13 @@ const initialize = () => {
     } catch (err) {
       console.log("Error: ", err);
     }
-
     var message_description = `Transaction submitted to Blockchain for processing. Check your Metamask for transaction update.`;
 
     //TODO - trigger notification
     console.log(message_description);
   }
 
-  //Watch for registeredDay1UserEvent, returns  fname and lname
-  /* 
-        var registeredDay1UserEvent = day1Contract.registeredDay1UserEvent();
-        registeredDay1UserEvent.watch(function(error, result){
-            if (!error)
-                {
-                    console.log("registeredDay1UserEvent");
-                    // TODO - enable button if applicable?
-
-                    // Remove spinner from button if applicable
-
-                    //update text /  notification
-                    //(`Added to Blockchain`);
-
-                    // TODO - Update status in DB via ajax post then update UI button
-                } else {
-                    console.log(error);
-
-                    // TODO - Update status in DB via ajax post then update UI button
-                }
-        }); */
-
-  // function to get count of user entries that have been previously added to the blockchain
+   // function to get count of user entries that have been previously added to the blockchain
   function getNumberOfUsersCount() {
     if (typeof web3 === "undefined") {
       return handle_web3_undefined_error();
@@ -308,74 +323,44 @@ const initialize = () => {
       }
 
       let day1UserSubmissionsCount = result.toNumber(); // Output from the contract function call
-
       console.log("getNumberOfUsersCount: " + day1UserSubmissionsCount);
       var message_description = `Number of User Entries in Day1 registry: + ${day1UserSubmissionsCount}`;
-
       // TODO - trigger notification
       return console.log(message_description);
     });
   }
 
-  // function to check Day1  Contract Status - stopped or not stopped
-  /* function getContractStatus() {
-            if (typeof web3 === 'undefined'){
-                    return handle_web3_undefined_error();
-                }
 
-            day1Contract.checkContractIsRunning(function(err, result) {
-                if (err){
-                    return handle_error(err);
-                }
+  //------Watch for Blockchain and Smart Contract Events------\\
 
-                console.log("Is Day1 Contract currently stopped " + result);
-            });
-        }; */
+  //Watch for registeredDay1UserEvent, returns  string _name, string _surname, uint _submissionBlockNumber
+  day1Contract.on('registeredDay1UserEvent', (name, surname, submissionBlockNumber, event) => {
+    console.log("registeredDay1UserEvent");
+    console.log('First parameter name:', name);
+    console.log('Second parameter surname:', surname);
+    console.log('Third parameter submissionBlockNumber:', submissionBlockNumber);
+    console.log('Event : ', event);  //Event object
+    let btnID = 12345;
+    updateAddBlockchainBtn(btnID) //Update UI Button to stop spinning
+    // TODO - Update status in DB via ajax post then update UI button
+  });
 
-  // function to toggle contract status between stopped and not stopped
-  /* function toggleContractStatus() {
-            if (typeof web3 === 'undefined'){
-                    return handle_web3_undefined_error();
-                }
+  //------/Watch for Blockchain and Smart Contract Events------\\
 
-            day1Contract.checkContractIsRunning(function(err, result) {
-                if (err) {
-                    return handle_error(err);
-                };
-                var original_contract_status = result;
-                console.log("Is Day1 registry Contract currently stopped before toggle: " + original_contract_status);
+  //------AJAX Calls------\\
+  function updateAddBlockchainBtn(unique_id) {
+    const addToBlockchainBtnID = "#add_blockchain_" + unique_id
+    const addToBlockchainBtn = $(addToBlockchainBtnID)
+    console.log(addToBlockchainBtn)
 
-                day1Contract.toggleContractActive(function(err2, result2) {
-                    if (err2){
-                        return handle_error(err2);
-                    };
-                    var new_contract_status = !original_contract_status;
+    // remove spinner from button
+    addToBlockchainBtn.removeClass("spinner-border");
+    addToBlockchainBtn.removeClass("spinner-spinner-border-sm");
+    addToBlockchainBtn.html('Added to Blockchain...');
+    console.log("AddBlockchainBtn updated for user " + unique_id);
+  }
+  //------/AJAX Calls------\\
 
-                    // TODO - trigger a custom notification 
-                    console.log("Day1 registry Contract status toggled. Transaction submitted to Blockchain for processing");
-                });
-            });
-        }; */
-
-  // function to initiate contract selfdestruct
-  /*  function destroyContract() {
-            if (typeof web3 === 'undefined'){
-                    return handle_web3_undefined_error();
-                }
-
-            day1Contract.destroy(function(err, result) {
-                if (err){
-                    return handle_error(err);
-                }
-                console.log("result: " + result);
-                // TODO - trigger a custom notification 
-                if (typeof result !== 'undefined')
-                {
-                    console.log("Contract destroy initiated");
-                }
-            });
-        }; */
-  //  });
 };
 
 // As soon as the content in the DOM is loaded we are calling our initialize function
