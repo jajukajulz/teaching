@@ -4,9 +4,11 @@ const isMetaMaskInstalled = () => {
   return Boolean(ethereum && ethereum.isMetaMask);
 };
 
+//Basic Actions Section
 const ethereumButton = document.querySelector(".enableEthereumButton");
 const showAccount = document.querySelector(".showAccount");
 
+// this function will be called when content in the DOM is loaded
 const initialize = () => {
   /* A page can't be manipulated safely until the document is "ready." - jQuery detects this state of readiness. 
     Code included inside $(document).ready() will only run once the page Document Object Model (DOM) is ready for JavaScript 
@@ -206,7 +208,6 @@ const initialize = () => {
   //function to handle error from smart contract call
   function handle_error(err) {
     console.log("function handle_error(err).");
-    // var message_type = CONSTANTS.ERROR; //error or success
     var error_data = err.data;
     var message_description = "Day1 Smart contract call failed: " + err;
     if (typeof error_data !== "undefined") {
@@ -224,7 +225,6 @@ const initialize = () => {
   //function to handle web 3 undefined error from smart contract call
   function handle_web3_undefined_error() {
     console.log("function handle_web3_undefined_error(err).");
-    // var message_type = CONSTANTS.ERROR; //error or success
     var message_description =
       "Please install MetaMask to access the Ethereum Web3 injected API from your Web browser.";
 
@@ -248,8 +248,12 @@ const initialize = () => {
     // function registerUser(string calldata _name, string calldata _surname) external returns(uint)
 
     await getAccount();
+
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     console.log({ provider });
+
+    // The Metamask plugin also allows signing transactions to send ether and
+    // pay to change state within the blockchain. For this, we need the account signer
     const signer = provider.getSigner();
     const day1Contract = new ethers.Contract(
       day1ContractAddress,
